@@ -2,9 +2,10 @@ package Steps;
 
 import org.openqa.selenium.WebDriver;
 
-import Tasks.FillForm;
+import Questions.ValidatarTotal;
+import Tasks.AdicionarProductos;
+import Tasks.EliminarProductos;
 import Tasks.OpentTheBrowser;
-import Tasks.ValidateName;
 import UserInterface.Home;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -28,22 +29,28 @@ public class StepsDefinitions {
 		fabian.can(BrowseTheWeb.with(browser));
 	}
 
-	@Given("Necesito buscar el formulario")
-	public void queHemosEncontradoElFormulario() {
+	@Given("El cliente ingresa a la pagina de prueba")
+	public void elClienteIngresaALaPaginaDePrueba() {
 		fabian.wasAbleTo(Open.browserOn(new Home()));
-		fabian.wasAbleTo(OpentTheBrowser.buscarForm());
-	}
-
-	@When("Halla llenado el fomulario")
-	public void terminamosDeLlenarlo() {
-		fabian.wasAbleTo(FillForm.fillForm());
+		fabian.wasAbleTo(OpentTheBrowser.Navega());
 		
 	}
 
-	@Then("Valido el campo del nombre")
-	public void validaremosNuestroNombre() {				
-		fabian.wasAbleTo(ValidateName.validateName());
+	@When("Adiciona productos al carrito")
+	public void adicionaProductosAlCarrito() {
+		fabian.wasAbleTo(AdicionarProductos.adicionarProductos());
+		fabian.wasAbleTo(EliminarProductos.eliminarProductos());
 		
+		
+	}
+
+	@Then("Valido el valor total del carrito")
+	public void validoElValorTotalDelCarrito() {			
+		fabian.wasAbleTo(ValidatarTotal.validatarTotal());
+		
+		
+		
+	
 		
 		
 	}
